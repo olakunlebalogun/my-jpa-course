@@ -1,4 +1,4 @@
-package com.olakunle.myjpa.model;
+package com.olakunle.myjpa.model.onetomany;
 
 import lombok.*;
 

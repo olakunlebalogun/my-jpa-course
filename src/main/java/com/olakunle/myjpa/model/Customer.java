@@ -23,8 +23,7 @@ public class Customer{
     private String phone;
     private String address;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerEmail")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private List<ShoppingBasket> shoppingBasketList;
-
 
 }

@@ -9,7 +9,10 @@ public class ShoppingBasket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(name = "customer_email")
-    private String customerEmail;
+//    @Column(name = "customer_email")
+    @ManyToOne
+    @JoinColumn(name="customer_email")
+    private Customer customer;
+
 
 }

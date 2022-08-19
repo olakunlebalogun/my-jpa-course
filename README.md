@@ -55,8 +55,9 @@ Let's say the relationship is between class A and class B
 This is done by creating an atrribute of class A in class B and annotate it with @OneToOne and define the cascade based on what you want and do the same thing for class B. The result will created a foreign key in both table in the database with links to the other table.
 
 
+ManyToMany
 
-
+THis is a Mapping that has the list of the eachother's entity in them, this is the mapping List can be either Set or List, that is based on preference... to do that, declare an attribute of Set or List of the opposite class in the other, annotate with @ManyToMany, on one of the classes adding the mappedBy property which value would be the name of its referenced attribute while on the other use the @JoinTable attribute with property JoinColumn with value @JoinColumn and InverseJoinColumn with value @JoinColumn ... This will create a join table with the @JoinTable name... failing to add the attributes, each tables will have their respective Join tables.
 
 
 

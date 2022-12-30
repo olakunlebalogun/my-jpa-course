@@ -21,7 +21,6 @@ public class Employee {
 
 
     @OneToOne(cascade = CascadeType.ALL)
-
     @JoinColumn(name = "details_id", referencedColumnName = "id")
     private EmployeeDetails employeeDetails;
 

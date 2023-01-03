@@ -1,11 +1,9 @@
 package com.olakunle.myjpa;
 
-import com.olakunle.myjpa.model.Department;
-import com.olakunle.myjpa.model.Employee;
-import com.olakunle.myjpa.model.EmployeeDetails;
-import com.olakunle.myjpa.repository.DepartmentRepository;
-import com.olakunle.myjpa.repository.EmployeeDetailsRepository;
-import com.olakunle.myjpa.repository.EmployeeRepository;
+
+import com.olakunle.myjpa.model.User;
+import com.olakunle.myjpa.model.UserProfile;
+import com.olakunle.myjpa.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,86 +11,79 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.time.LocalDate;
 
 @SpringBootApplication
 @Slf4j
 @Component
 public class MyJpaCourseApplication {
+	private final UserProfileRepository userProfileRepository;
+
+	public MyJpaCourseApplication(UserProfileRepository userProfileRepository) {
+		this.userProfileRepository = userProfileRepository;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(MyJpaCourseApplication.class, args);
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner (EmployeeRepository employeeRepository, EmployeeDetailsRepository employeeDetailsRepository, DepartmentRepository departmentRepository){
+	public CommandLineRunner commandLineRunner (UserRepository userRepository, UserProfileRepository userProfileRepository
+	){
 		return e -> {
 
+			UserProfile olalekanProfile = new UserProfile();
+			olalekanProfile.setAddressOne("Igbanda Ibadan");
+			olalekanProfile.setAddressTwo("Raoni Ikorodu");
+			olalekanProfile.setCity("Lagos");
+			olalekanProfile.setCountry("Nigeria");
+			olalekanProfile.setDob(LocalDate.of(1987, 6, 6));
+			olalekanProfile.setGender("Male");
+			olalekanProfile.setPhoneNumber("08167572919");
+			olalekanProfile.setState("Kwara");
+			olalekanProfile.setStreet("Raoni");
+			olalekanProfile.setZipCode("101121");
+
+			User firstUser = new User();
+			firstUser.setFirstName("Olalekan");
+			firstUser.setLastName("Balogun");
+			firstUser.setPassword("ola0606");
+			firstUser.setEmailAddress("olalekan@gmail.com");
+			firstUser.setUserProfile(olalekanProfile);
 
 
-//			One-to-One Relationships
-//			EmployeeDetails employeeOneDetails = new EmployeeDetails(1L,"palm street", "medical", "male");
-			EmployeeDetails employeeOneDetails = EmployeeDetails.builder()
-					.id(1L)
-					.address("palm street")
-					.department("medical")
-					.gender("male")
-					.build();
-
-			Employee employeeOne = Employee.builder()
-					.employeeName("Dele")
-					.employeeSalary(20000L)
-					.employeeDesignation("doctor")
-					.employeeDetails(employeeOneDetails)
-					.build();
-
-			employeeRepository.save(employeeOne);
-//			employeeDetailsRepository.save(employeeOneDetails);
-
-//			EmployeeDetails employeeTwoDetails = new EmployeeDetails(2L, "broad street, Oklahoma", "fire service", "male");
-			EmployeeDetails employeeTwoDetails = EmployeeDetails.builder()
-					.gender("male")
-					.department("fire service")
-					.id(2L)
-					.address("broad street")
-					.build();
-			Employee employeeTwo = Employee.builder()
-					.employeeName("Clement Stanford")
-					.employeeSalary(25000L)
-					.employeeDesignation("extinguisher")
-					.employeeDetails(employeeTwoDetails)
-					.build();
-
-			employeeRepository.save(employeeTwo);
-//			employeeDetailsRepository.save(employeeTwoDetails);
+			userRepository.save(firstUser);
 
 
-			/*
-			 * One to Many JPA Mapping
-			 * This uses the Department nd the Employee entities
-			 * It explains that one department can have several employee, but one employee can have only one department
-			 */
 
-//			EmployeeDetails employeeThreeDetails = EmployeeDetails.builder()
-//					.address("Mark Urban Lane")
-//					.gender("male")
-////					.employee(employeeThree)
-//					.department("medical")
-//					.build();
-//
-//			Employee employeeThree = Employee.builder()
-//					.employeeName("Jake")
-//					.employeeDesignation("Radiologist")
-//					.employeeSalary(50000L)
-//					.employeeDetails(employeeThreeDetails)
-//					.build();
-//
-//			Department medicalDept = Department.builder()
-//					.employees(List.of(employeeOne, employeeThree))
-//					.name("Medical")
-//					.build();
-//
-//			departmentRepository.save(medicalDept);
+			// Olanrewaju Profile
+			UserProfile lanreProfile = new UserProfile();
+			lanreProfile.setAddressOne("Ogbomosho");
+			lanreProfile.setAddressTwo("Ikorodu");
+			lanreProfile.setCity("Oyo");
+			lanreProfile.setCountry("Nigeria");
+			lanreProfile.setDob(LocalDate.of(1990, 10, 26));
+			lanreProfile.setGender("Male");
+			lanreProfile.setPhoneNumber("0810187741");
+			lanreProfile.setState("Kwara");
+			lanreProfile.setStreet("Raoni");
+			lanreProfile.setZipCode("101121");
+
+			User secondUser = new User();
+			secondUser.setFirstName("Olalekan");
+			secondUser.setLastName("Balogun");
+			secondUser.setPassword("lanre1026");
+			secondUser.setEmailAddress("Olanrewaju@gmail.com");
+			secondUser.setUserProfile(lanreProfile);
+
+
+			userRepository.save(secondUser);
+
+
+
+//			userProfileRepository.delete(olalekanProfile);
+
+//			log.info(userRepository.findById(1L).get().getUserProfile().getCountry());
 
 
 		};

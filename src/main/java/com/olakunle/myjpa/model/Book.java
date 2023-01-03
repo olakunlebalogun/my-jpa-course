@@ -1,9 +1,6 @@
 package com.olakunle.myjpa.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -17,6 +14,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Book implements Serializable {
 
     // Using UUID as a generation strategy for the ISBN

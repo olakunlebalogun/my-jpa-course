@@ -65,7 +65,7 @@ public class MyJpaCourseApplication {
  * also, no other reference was made in the Book class.
  */
 
-
+log.info(authorRepository.findByName("Anthony Robbins").get().getBooks().toString());
 
 
 		};

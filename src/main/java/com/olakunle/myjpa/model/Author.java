@@ -1,9 +1,6 @@
 package com.olakunle.myjpa.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -16,6 +13,7 @@ import java.util.HashSet;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Author implements Serializable {
 
     @Id
@@ -26,7 +24,7 @@ public class Author implements Serializable {
 
     private String url;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "books", referencedColumnName = "name")
     private Set<Book> books = new HashSet<>();
 }

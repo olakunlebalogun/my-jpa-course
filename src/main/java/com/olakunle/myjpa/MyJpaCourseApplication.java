@@ -1,9 +1,10 @@
 package com.olakunle.myjpa;
 
 
-import com.olakunle.myjpa.model.User;
-import com.olakunle.myjpa.model.UserProfile;
-import com.olakunle.myjpa.repository.*;
+import com.olakunle.myjpa.model.Author;
+import com.olakunle.myjpa.model.Book;
+import com.olakunle.myjpa.repository.AuthorRepository;
+import com.olakunle.myjpa.repository.BookRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,78 +13,59 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @SpringBootApplication
 @Slf4j
 @Component
 public class MyJpaCourseApplication {
-	private final UserProfileRepository userProfileRepository;
 
-	public MyJpaCourseApplication(UserProfileRepository userProfileRepository) {
-		this.userProfileRepository = userProfileRepository;
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(MyJpaCourseApplication.class, args);
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner (UserRepository userRepository, UserProfileRepository userProfileRepository
-	){
+	public CommandLineRunner commandLineRunner (BookRepository bookRepository, AuthorRepository authorRepository){
 		return e -> {
+			Book bookOne = new Book();
+			bookOne.setTitle("Awaken the giant within");
+			bookOne.setPrice(1200L);
+//			bookOne.setAuthorName("");
+//			bookOne.setAuthorAddress();
+			bookOne.setYear("2017");
+			bookOne.setPublisherName("Free Press");
 
-			UserProfile olalekanProfile = new UserProfile();
-			olalekanProfile.setAddressOne("Igbanda Ibadan");
-			olalekanProfile.setAddressTwo("Raoni Ikorodu");
-			olalekanProfile.setCity("Lagos");
-			olalekanProfile.setCountry("Nigeria");
-			olalekanProfile.setDob(LocalDate.of(1987, 6, 6));
-			olalekanProfile.setGender("Male");
-			olalekanProfile.setPhoneNumber("08167572919");
-			olalekanProfile.setState("Kwara");
-			olalekanProfile.setStreet("Raoni");
-			olalekanProfile.setZipCode("101121");
+			Book bookTwo = new Book();
+			bookTwo.setTitle("Unlimited Power");
+			bookTwo.setPrice(1500L);
+//			bookTwo.setAuthorName("");
+//			bookTwo.setAuthorAddress();
+			bookTwo.setYear("2004");
+			bookTwo.setPublisherName("Free Press");
 
-			User firstUser = new User();
-			firstUser.setFirstName("Olalekan");
-			firstUser.setLastName("Balogun");
-			firstUser.setPassword("ola0606");
-			firstUser.setEmailAddress("olalekan@gmail.com");
-			firstUser.setUserProfile(olalekanProfile);
-
-
-			userRepository.save(firstUser);
-
-
-
-			// Olanrewaju Profile
-			UserProfile lanreProfile = new UserProfile();
-			lanreProfile.setAddressOne("Ogbomosho");
-			lanreProfile.setAddressTwo("Ikorodu");
-			lanreProfile.setCity("Oyo");
-			lanreProfile.setCountry("Nigeria");
-			lanreProfile.setDob(LocalDate.of(1990, 10, 26));
-			lanreProfile.setGender("Male");
-			lanreProfile.setPhoneNumber("0810187741");
-			lanreProfile.setState("Kwara");
-			lanreProfile.setStreet("Raoni");
-			lanreProfile.setZipCode("101121");
-
-			User secondUser = new User();
-			secondUser.setFirstName("Olalekan");
-			secondUser.setLastName("Balogun");
-			secondUser.setPassword("lanre1026");
-			secondUser.setEmailAddress("Olanrewaju@gmail.com");
-			secondUser.setUserProfile(lanreProfile);
+			Book bookThree = new Book();
+			bookThree.setTitle("Money Master the game");
+			bookThree.setPrice(2000L);
+//			bookThree.setAuthorName("");
+//			bookThree.setAuthorAddress();
+			bookThree.setYear("2021");
+			bookThree.setPublisherName("Free Press");
 
 
-			userRepository.save(secondUser);
+			Author toni = new Author();
+			toni.setName("Anthony Robbins");
+			toni.setAddress("North Hollywood, Los Angeles, California");
+			toni.setUrl("https://www.tonyrobbins.com/tony-robbins-books/");
+			toni.setBooks(Set.of(bookOne, bookTwo, bookThree));
+
+			authorRepository.save(toni);
+/**
+ * The above code saved successfully, but the author-name and author-address has not be resolved.
+ * also, no other reference was made in the Book class.
+ */
 
 
-
-//			userProfileRepository.delete(olalekanProfile);
-
-//			log.info(userRepository.findById(1L).get().getUserProfile().getCountry());
 
 
 		};

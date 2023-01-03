@@ -1,0 +1,43 @@
+package com.olakunle.myjpa.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.io.Serializable;
+
+@Entity
+@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Book implements Serializable {
+
+    // Using UUID as a generation strategy for the ISBN
+    // TODO: Try the Custom method Generator for the ISBN
+
+
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @Column(name = "isbn")
+    private String ISBN;
+
+
+    private String publisherName;
+
+    @Column(name = "author")
+    private String authorName;
+    private String authorAddress;
+    private String year;
+    private String title;
+    private Long price;
+
+}

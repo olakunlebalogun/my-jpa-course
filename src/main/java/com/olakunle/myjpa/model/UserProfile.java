@@ -37,8 +37,6 @@ public class UserProfile {
     private User user;
 
 
-//    user_id
-
 
 
 }

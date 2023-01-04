@@ -21,56 +21,54 @@ import java.util.Set;
 public class MyJpaCourseApplication {
 
 
-	public static void main(String[] args) {
-		SpringApplication.run(MyJpaCourseApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MyJpaCourseApplication.class, args);
+    }
 
-	@Bean
-	public CommandLineRunner commandLineRunner (BookRepository bookRepository, AuthorRepository authorRepository){
-		return e -> {
-			Book bookOne = new Book();
-			bookOne.setTitle("Awaken the giant within");
-			bookOne.setPrice(1200L);
+    @Bean
+    public CommandLineRunner commandLineRunner(BookRepository bookRepository, AuthorRepository authorRepository) {
+        return e -> {
+            Book bookOne = new Book();
+            bookOne.setTitle("Awaken the giant within");
+            bookOne.setPrice(1200L);
 //			bookOne.setAuthorName("");
 //			bookOne.setAuthorAddress();
-			bookOne.setYear("2017");
-			bookOne.setPublisherName("Free Press");
+            bookOne.setYear("2017");
+            bookOne.setPublisherName("Free Press");
 
-			Book bookTwo = new Book();
-			bookTwo.setTitle("Unlimited Power");
-			bookTwo.setPrice(1500L);
+            Book bookTwo = new Book();
+            bookTwo.setTitle("Unlimited Power");
+            bookTwo.setPrice(1500L);
 //			bookTwo.setAuthorName("");
 //			bookTwo.setAuthorAddress();
-			bookTwo.setYear("2004");
-			bookTwo.setPublisherName("Free Press");
+            bookTwo.setYear("2004");
+            bookTwo.setPublisherName("Free Press");
 
-			Book bookThree = new Book();
-			bookThree.setTitle("Money Master the game");
-			bookThree.setPrice(2000L);
+            Book bookThree = new Book();
+            bookThree.setTitle("Money Master the game");
+            bookThree.setPrice(2000L);
 //			bookThree.setAuthorName("");
 //			bookThree.setAuthorAddress();
-			bookThree.setYear("2021");
-			bookThree.setPublisherName("Free Press");
+            bookThree.setYear("2021");
+            bookThree.setPublisherName("Free Press");
 
 
-			Author toni = new Author();
-			toni.setName("Anthony Robbins");
-			toni.setAddress("North Hollywood, Los Angeles, California");
-			toni.setUrl("https://www.tonyrobbins.com/tony-robbins-books/");
-			toni.setBooks(Set.of(bookOne, bookTwo, bookThree));
+            Author toni = new Author();
+            toni.setName("Anthony Robbins");
+            toni.setAddress("North Hollywood, Los Angeles, California");
+            toni.setUrl("https://www.tonyrobbins.com/tony-robbins-books/");
+            toni.setBooks(Set.of(bookOne, bookTwo, bookThree));
 
-			authorRepository.save(toni);
+            authorRepository.save(toni);
 /**
  * The above code saved successfully, but the author-name and author-address has not be resolved.
  * also, no other reference was made in the Book class.
  */
 
-log.info(authorRepository.findByName("Anthony Robbins").get().getBooks().toString());
+            log.info(authorRepository.findByName("Anthony Robbins").get().getBooks().toString());
+            log.info(authorRepository.findByName("Anthony Robbins").get().getBooks().toString());
 
-
-		};
-
-
-	}
+        };
+    }
 
 }

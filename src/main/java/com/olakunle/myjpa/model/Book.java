@@ -3,10 +3,7 @@ package com.olakunle.myjpa.model;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -37,5 +34,9 @@ public class Book implements Serializable {
     private String year;
     private String title;
     private Long price;
+
+    // TODO:
+    @ManyToOne()
+    private Author author;
 
 }

@@ -20,6 +20,7 @@ public class Book implements Serializable {
 
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 
+
     @Id
     @GeneratedValue(generator = "UUID")
     @Column(name = "isbn")

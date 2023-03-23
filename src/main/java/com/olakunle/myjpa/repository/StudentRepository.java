@@ -1,9 +1,9 @@
 package com.olakunle.myjpa.repository;
 
-import com.olakunle.myjpa.entity.Address;
+import com.olakunle.myjpa.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AddressRepository extends JpaRepository<Address, Integer> {
+public interface StudentRepository extends JpaRepository<Student, Integer> {
 }

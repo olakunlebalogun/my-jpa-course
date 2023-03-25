@@ -25,5 +25,6 @@ public class Course {
     private String description;
 
     @ManyToMany(mappedBy = "courses")
+    // Note: Associations marked as mappedBy must NOT define database mappings like @JoinTable or @JoinColumn
     private List<Student> students = new ArrayList<>();
 }

@@ -20,5 +20,7 @@ public class Address {
     private String location;
 
     @OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
+    // Note: Associations marked as mappedBy must NOT define database mappings like @JoinTable or @JoinColumn
+//    @JoinColumn(name = "library_id", referencedColumnName = "id")  // test: changing if two @JoinColumn can be used. RESULT: It don't change the output.
     private Library library;
 }

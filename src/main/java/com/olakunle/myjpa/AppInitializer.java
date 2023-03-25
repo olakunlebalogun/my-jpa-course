@@ -55,6 +55,7 @@ public class AppInitializer implements CommandLineRunner {
                      * =========================================================================================*!!
                      */                                                                                         //**
 
+        //
         Address address = new Address(); // NOTE: Only one instance of this entity can be created
 //        address.setId(); // Auto-set
         address.setLocation("Yaba, Muson Street");
@@ -64,6 +65,8 @@ public class AppInitializer implements CommandLineRunner {
         Library library = new Library();// NOTE: Only one instance of this entity can be created
         library.setName("Moremi Memorial Library");
         library.setAddress(address);
+       // address.setLibrary(library); // Test: This won't work
+        // Note: Associations marked as mappedBy must not define database mappings like @JoinTable or @JoinColumn
 
         libraryRepository.save(library);
 

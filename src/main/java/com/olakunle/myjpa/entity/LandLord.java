@@ -23,6 +23,6 @@ public class LandLord {
     private String name;
     private String houseId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "landLord")
-//    @JoinColumn(name = "t_id", referencedColumnName = "id")
+//    @JoinColumn(name = "tenant_id", referencedColumnName = "id") // Note: Associations marked as mappedBy must not define database mappings like @JoinTable or @JoinColumn
     private List<Tenant> tenants = new ArrayList<>();
 }
